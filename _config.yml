@@ -16,6 +16,7 @@ author :
   github : ConorStokes
   twitter : xDirtyPunkx
   feedburner : conor.stokes2@gmail.com
+paginate: 5
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -82,7 +83,7 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : jekyllbootstrap
+      short_name : conorstokes
     livefyre :
       site_id : 123
     intensedebate :
