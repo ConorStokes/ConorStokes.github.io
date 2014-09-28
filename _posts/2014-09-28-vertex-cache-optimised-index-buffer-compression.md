@@ -53,6 +53,8 @@ Compression (Vertex Optimised)  | &nbsp;&nbsp;2577k  | &nbsp;&nbsp;1518k | &nbsp
 
 Performance wise, the algorithm offers linear scaling, decompressing about 50 million triangles a second and compressing about 20 million across a variety of meshes with my implementation on a single core. For compression, I used a large pre-allocated buffer for the bitstream to avoid the overhead of re-allocations. Compression is also very consistently between 12 and 13bits a triangle.
 
+The compressed and uncompressed columns in the below table refer to sizes in bytes. The models are the typical Stanford scanned test models.
+
 MODEL&nbsp;&nbsp;  |  &nbsp;&nbsp;TRIANGLES&nbsp;&nbsp;  |  &nbsp;&nbsp;UNCOMPRESSED&nbsp;&nbsp;  |  &nbsp;&nbsp;COMPRESSED&nbsp;&nbsp;  |  &nbsp;&nbsp;COMPRESSION TIME&nbsp;&nbsp;  | &nbsp;&nbsp;DECOMPRESSION TIME 
 :-- | :-- | :-- | :-- | :-- | :-- |
 Bunny | &nbsp;&nbsp;69,630 | &nbsp;&nbsp;835,560 | &nbsp;&nbsp;111,786 | &nbsp;&nbsp;3.7ms | &nbsp;&nbsp;1.45ms
