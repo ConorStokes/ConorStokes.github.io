@@ -10,7 +10,7 @@ A few weeks ago, I saw Fabian Giesen's [Simple lossless(*) index buffer compress
 
 Re-ordering the triangles has the disadvantage that it destroys post-transform vertex cache optimisation (although, it did optimise order for the pre-transform vertex cache). Now, the vertex cache utilisation of these algorithms isn't generally catastrophic, as they use locality, but definitely worse than those produced by [Tom Forsyth's algorithm](http://home.comcast.net/~tom_forsyth/papers/fast_vert_cache_opt.html). 
 
-Fabian's algorithm has the advantage of keeping triangle order, while performing better when vertex cache optimisation has been performed. It's also incredibly simple, easy to implement, uses very little in the way of extra resources. The key insight is that triangles that have been vertex cache optimised are likely to share an edge with the previous triangle.
+Fabian's algorithm has the advantage of keeping triangle order, while performing better when vertex cache optimisation has been performed. It's also incredibly simple, easy to implement and uses very little in the way of extra resources. The key insight is that triangles that have been vertex cache optimised are likely to share an edge with the previous triangle.
 
 But what if we extend this assumption a little, in that a triangle is also likely to share edges and vertices with other recent triangles. This is pretty obvious as this is exactly what the vertex cache optimisation aims for when it re-orders the triangles. 
 
