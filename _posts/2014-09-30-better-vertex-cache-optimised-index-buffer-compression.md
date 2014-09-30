@@ -6,7 +6,7 @@ category: Graphics
 tags: [Graphics, Compression]
 ---
 {% include JB/setup %}
-I've had a second pass at the compression/decompression algorithm now, after some discussion from davean on #flipCode. The new iteration of the algorithm (which is available alongside the original) is a fair bit faster for decompression, slightly faster for compression and has a slightly better compression ratio. The updated algorithm doesn't however support degenerate triangles (triangles that have a duplicate vertex indice), where as the original does. 
+I've had a second pass at the compression/decompression algorithm now, after some discussion with davean on #flipCode. The new iteration of the algorithm (which is available alongside the original) is a fair bit faster for decompression, slightly faster for compression and has a slightly better compression ratio. The updated algorithm doesn't however support degenerate triangles (triangles that have a duplicate vertex indice), where as the original does. 
 
 The original is discussed [here](http://conorstokes.github.io/graphics/2014/09/28/vertex-cache-optimised-index-buffer-compression/).
 

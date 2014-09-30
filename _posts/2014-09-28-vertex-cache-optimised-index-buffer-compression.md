@@ -6,6 +6,9 @@ category: Graphics
 tags: [Graphics, Compression]
 ---
 {% include JB/setup %}
+
+*Update* - There is a [new post](http://conorstokes.github.io/graphics/2014/09/30/better-vertex-cache-optimised-index-buffer-compression/) about an updated version of the algorithm listed here.
+
 A few weeks ago, I saw Fabian Giesen's [Simple lossless(*) index buffer compression](http://fgiesen.wordpress.com/2013/12/14/simple-lossless-index-buffer-compression/) post (and the accompanying code on GitHub) and it made me think about a topic I haven't thought about in a while, index buffer compression. A long time ago, at university, I built a mesh compressor as a project. It had compression rates for triangle lists of less than 2bits a triangle (and did pretty well with vertices too), but it had a few limitations; it completely re-ordered the triangles and it required that at most 2 triangles share an edge. The performance was semi-decent, but it was also relatively heavy and complicated, as well as requiring a fair bit of dynamic allocation for maintaining things like connectivity structures and an edge stack.
 
 Re-ordering the triangles has the disadvantage that it destroys post-transform vertex cache optimisation (although, it did optimise order for the pre-transform vertex cache). Now, the vertex cache utilisation of these algorithms isn't generally catastrophic, as they use locality, but definitely worse than those produced by [Tom Forsyth's algorithm](http://home.comcast.net/~tom_forsyth/papers/fast_vert_cache_opt.html). 
