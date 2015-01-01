@@ -22,7 +22,7 @@ The basic premise is that bitables are built by adding keys/value pairs in key s
 
 There is a bitable library implementation, written in C (although, the included example is C++). This library serves as a relatively simple reference implementation, although it is designed to be usable for real life use. The library has both posix and win32 implementations, although it has only currently been tested and built on Windows and Linux (ubuntu). I don't currently claim that the library is production ready, as it hasn't been used fully in anger yet.
 
-Here is an example of using the library to search for a key in a bitable, then scan forwards, reading 100 keys and values:
+Here is an example of using the library to search for the lower bound of a range in a bitable, then scan forwards, reading 100 keys and values:
 
     BitableCursor cursor;
     BitableResult searchResult = bitable_find( &cursor, table, &searchKey, BFO_LOWER );
