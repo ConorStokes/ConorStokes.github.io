@@ -13,7 +13,7 @@ Bitables are a storage oriented data structure designed to exploit the benefits 
 You can call this a thought experiment, because as I can imagine lots of different use cases for bitables, I have not had time yet to adequately explore them. However, preliminary benchmarks indicate that writing out a bitable is fast enough that they can be used for relatively dynamic structures, not just static ones. Some potential uses would be:
 
  - A lucene like inverted index (with segments and merging), when combined with something like [roaring bitmaps](http://roaringbitmap.org/).
- -  A de-amortized log structured COLA like structure (with bitables at deeper levels and the higher levels stored in memory), 
+ - A de-amortized log structured COLA like structure (with bitables at deeper levels and the higher levels stored in memory).
  - A static index where range or prefix searches are required.
 
 Merging bitables is quite a quick operation, so they are suitable many places large SSTables would be used.
