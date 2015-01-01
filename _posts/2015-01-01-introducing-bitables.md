@@ -87,8 +87,8 @@ Note that this is a side project for me and has been done in very limited time, 
 
 All these benchmarks were performed on my Windows 8.1 64bit machine with 32GB of RAM, a Core i7 4790 and a Samsung 850 Pro 512GB SSD. All tests use 4KB pages and 8 byte key and value alignment. Note that these benchmarks are definitely not the final say on performance and I haven't had time to perform adequate bench-marking for multi-threaded reads.
 
-Our test dataset is using 129,672,136 24 byte keys (a latitude and longitude pair of 2 doubles, as well as a 64bit unix millisecond time stamp), matching up to an 8 byte value . It's 3.86 GiB, packed end to end.
+Our test dataset is using 129,672,136 key value pairs, with 24 byte keys (latitude and longitude as 8 byte doubles, as well as a 64bit unix millisecond time stamp), matching up to an 8 byte value. It's 3.86 GiB, packed end to end.
 
-Reading the data set from a warm memory mapped file and creating the bitable takes (averaged over 4 runs) 11.01 seconds in the non durable mode and 13.08 seconds in the durable mode. The leaf level is 4.84 GiB and the 3 branch levels are 34 MiB, 240 Kib and 4 Kib respectively. 
+Reading the data set from a warm memory mapped file and creating the bitable takes (averaged over 4 runs) 11.01 seconds in the non-durable mode and 13.08 seconds in the durable mode. The leaf level is 4.84 GiB and the 3 branch levels are 34 MiB, 240 Kib and 4 Kib respectively. 
 
 From this dataset, we then selected keys 2,026,127 keys evenly distributed across the dataset, then randomly sorted them. We then used these for queries point queries (on a single thread), which on a cold read of the bitable averaged 7.51 seconds (averaged over 4 runs again) and on warm runs 1.81 seconds (keys and values were read and verified). That's well over a million random key point queries per second (ordered) on a single thread. 
