@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['bco_5fdiscard',['BCO_DISCARD',['../bitablewrite_8h.html#ad29824a0dc38717ceed99aaa1bd36314a1fb32ef25d0927cb53afb01163eb9b66',1,'bitablewrite.h']]],
+  ['bco_5fdurable',['BCO_DURABLE',['../bitablewrite_8h.html#ad29824a0dc38717ceed99aaa1bd36314ac4c3a3e8347aa250c163758cdca15c46',1,'bitablewrite.h']]],
+  ['bco_5fnone',['BCO_NONE',['../bitablewrite_8h.html#ad29824a0dc38717ceed99aaa1bd36314aaab4ac43c3733f2c73e2c0748e7372da',1,'bitablewrite.h']]],
+  ['bfo_5fexact',['BFO_EXACT',['../bitableread_8h.html#a8bb46095249a85b3eac8ca529a5f9ab0a94022e9062125c04c99fcd8f53a6f784',1,'bitableread.h']]],
+  ['bfo_5flower',['BFO_LOWER',['../bitableread_8h.html#a8bb46095249a85b3eac8ca529a5f9ab0a25a4a3a65d822956225895c1971960ad',1,'bitableread.h']]],
+  ['bfo_5fupper',['BFO_UPPER',['../bitableread_8h.html#a8bb46095249a85b3eac8ca529a5f9ab0adce71b042e510c7533fc8c8e8ec4eb37',1,'bitableread.h']]],
+  ['br_5falignment_5finvalid',['BR_ALIGNMENT_INVALID',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5afc9f3d7d60410f883b3bab095cc9e73e',1,'bitablecommon.h']]],
+  ['br_5falready_5fopen',['BR_ALREADY_OPEN',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5a617d915015417fc1c122d55e659d879a',1,'bitablecommon.h']]],
+  ['br_5fbad_5fpath',['BR_BAD_PATH',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5a08d8d2109c7539ee57a4a8dcd09061c0',1,'bitablecommon.h']]],
+  ['br_5fend_5fof_5fsequence',['BR_END_OF_SEQUENCE',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5a302e5582136764b015760449a26c3cc2',1,'bitablecommon.h']]],
+  ['br_5ffile_5fopen_5ffailed',['BR_FILE_OPEN_FAILED',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5a480af5e036052c0f5786651196300c75',1,'bitablecommon.h']]],
+  ['br_5ffile_5foperation_5ffailed',['BR_FILE_OPERATION_FAILED',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5a41eacc27ac3d5edb2c8bcff13847874b',1,'bitablecommon.h']]],
+  ['br_5ffile_5ftoo_5flarge',['BR_FILE_TOO_LARGE',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5ae8c1911690114a4cad4fb87be892f80b',1,'bitablecommon.h']]],
+  ['br_5ffile_5ftoo_5fsmall',['BR_FILE_TOO_SMALL',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5a2275fab252af080a063374c1de4e3ee7',1,'bitablecommon.h']]],
+  ['br_5fheader_5fcorrupt',['BR_HEADER_CORRUPT',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5a4c7824befaa2554483efd4f63c6d3fbd',1,'bitablecommon.h']]],
+  ['br_5finvalid_5fcursor_5flocation',['BR_INVALID_CURSOR_LOCATION',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5a44941e5dd263810513f4b40296be8ffe',1,'bitablecommon.h']]],
+  ['br_5fkey_5finvalid',['BR_KEY_INVALID',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5aa3be58d12fec1558fcdd2ef9e531ae98',1,'bitablecommon.h']]],
+  ['br_5fkey_5fnot_5ffound',['BR_KEY_NOT_FOUND',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5af742040d7533be13eadc4faaa87f59ed',1,'bitablecommon.h']]],
+  ['br_5fmaximum_5ftable_5ftree_5fdepth',['BR_MAXIMUM_TABLE_TREE_DEPTH',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5ad519c43691d55252f71243cedccafd62',1,'bitablecommon.h']]],
+  ['br_5fpagesize_5finvalid',['BR_PAGESIZE_INVALID',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5a101072c6157739872101c00903a6ee70',1,'bitablecommon.h']]],
+  ['br_5fsuccess',['BR_SUCCESS',['../bitablecommon_8h.html#a1afc578b2f3f472486d93bf036c1d9a5a64ff94d971ed823d589780dc9c7cd5c3',1,'bitablecommon.h']]],
+  ['bro_5fnone',['BRO_NONE',['../bitablecommon_8h.html#a39fdee7ecf1bfc16f076b39c8ac4844cacc687f3838e20316bbdf4114467d59c4',1,'bitablecommon.h']]],
+  ['bro_5frandom',['BRO_RANDOM',['../bitablecommon_8h.html#a39fdee7ecf1bfc16f076b39c8ac4844ca3fe2c8e0ec9abd9cbaccdb40199bf579',1,'bitablecommon.h']]],
+  ['bro_5fsequential',['BRO_SEQUENTIAL',['../bitablecommon_8h.html#a39fdee7ecf1bfc16f076b39c8ac4844cad7a32182087c16edc4eea8bc787039d8',1,'bitablecommon.h']]]
+];
