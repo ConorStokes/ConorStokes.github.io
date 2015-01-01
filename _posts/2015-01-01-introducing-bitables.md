@@ -50,42 +50,42 @@ Currently each level is stored in a separate file. When building the bitable, ea
 
 The leaf and branch levels are organised into pages. Within each page, there is a sorted set of keys (and values for leaf pages), which can be searched using a binary search. 
 
-Building the bitable uses an algorithm similar to a bulk insertion into a b+ tree. Keys and small values are added to a leaf page (buffered in memory), as they are appended and when the page is full, the buffer is appended to the file and the next page begun. When a new page begun, the first key is added to the level above it. New levels are created when the highest current level grows to more than one page. 
+Building the bitable uses an algorithm similar to a bulk insertion into a b+ tree. Keys and small values are added to a leaf page (buffered in memory), as they are appended and when the page is full, the buffer is appended to the file and the next page begun. When a new page is begun, the first key is added to the level above it. New levels are created when the highest current level grows to more than one page. 
 
 Similar to a b+ tree, the first key in each branch level page is implicit and not stored. Unlike a b+ tree, branch level pages do not have a child pointer for every key, but only to the first child page. Because the pages in the level below are in order, we can work out the index to the page based on the result of the binary search. 
 
-Because we don't have to worry about future inserts or page splitting, every page is as full as possible given the ordering, which should lead to the minimum possible number of levels for the data (within constraints). This keeps the number of pages needing to be touched for any one query at a minimum, reducing I/O, page faults, TLB misses and increasing the efficiency of the page cache. 
+Because we don't have to worry about future inserts or page splitting, every page is as full as possible given the ordering, which should lead to the minimum possible number of levels for the structure (within constraints). This keeps the number of pages needing to be touched for any one query at a minimum, reducing I/O, page faults, TLB misses and increasing the efficiency of the page cache. 
 
-The implementation of bitables uses a trick that many b+ tree implementations use and has offsets to keys (and possibly values) at the front of each page and key/value data at the back. This allows each page to be built up quickly, growing inwards from both the back and the front until it is full. However, it has some disadvantages for processor cache access patterns for searching (sorted order binary searches are not very good for processor cache access patterns). In future, for search heavy workloads, it might be reasonable to make branch levels use an internal Van Emde Boas layout. 
+The implementation of bitables uses a trick that many b+ tree implementations use, having offsets to keys (and possibly values) at the front of each page and key/value data at the back. This allows each page to be built up quickly, growing inwards from both the back and the front until it is full. However, it has some disadvantages for processor cache access patterns for searching (sorted order binary searches are not very good for cache access patterns). In future, for search heavy workloads, it might be reasonable to make branch levels use an internal Van Emde Boas layout. 
 
 ## The Implementation ##
 
-The implementation is available [on GitHub](https://github.com/ConorStokes/bitable) and the documentation is available [here](/bitabledocs). A premake4 build file is included (and the Windows premake4 binary I used to build it). On Ubuntu, I built it with the premake4 package (from apt-get) and Gcc. Let me know if there are any issues, or any other platforms you have tried it on.
+The implementation is available [on GitHub](https://github.com/ConorStokes/bitable) and the documentation is available [here](/bitabledocs). A premake4 file to create a build is included (and the Windows premake4 binary I used). On Ubuntu, I used the premake4 package (from apt-get). Let me know if there are any issues, or any other platforms you have tried it on.
 
-The reference implementation relies on the operating system where possible (memory mapped files, caching) to do the heavy lifting for things like caching and ordering writes in a smart way. It is a bit naive in that the buffers it uses for writing out bitables are only one page in size (per level), so the number of system calls is probably a reasonable amount higher than it needs to be. 
+The reference implementation relies on the operating system where possible (memory mapped files, the page cache) to do the heavy lifting for things like caching and ordering writes in a smart way. It is a bit naive in that the buffers it uses for writing out bitables are only one page in size (per level), so the number of system calls is probably a higher than it needs to be. 
 
-Reading of the bitable uses a zero copy memory mapping system, where keys and values are mapped directly from the file (although, the mapping should use read only page protection, so it shouldn't be possible to hose the data). Power of 2 alignments are supported for keys and values, specified when initializing the table for creation, so you can cast and access data structures in place. Currently we do not support omitting key or value sizes for fixed size keys/values (but this seems like a good future optimisation). 
+Reading the bitable uses a zero copy memory mapping system, where keys and values are come from pointers directly into the file (the mapping uses read only page protection, so it shouldn't be possible to hose the data). Power of 2 alignments are supported for keys and values, specified when initializing the table for creation, so you can cast and access data structures in place. Currently omitting key or value sizes for fixed size keys/values is not supported, but this seems like a good future optimisation for many use cases. 
 
 Apart from initializing and opening the bitable, for read operations a few rules are followed:
 
- - No heap allocation is done (although, memory may be allocated into the page cache for demand caching by the operating system).
+ - No heap allocation (although, memory may be allocated into the page cache for demand caching by the operating system).
  - Cursors and statistics structures may be allocated on the stack.
  - No locking is required (including internally).
  - No system calls made (memory mapped IO).
- - There is no mutation of the bitable data structures/no reliance on internal shared mutable state.
+ - There is no mutation of the bitable data structure/no reliance on internal shared mutable state.
  - All the code is re-entrant and there is no reliance on statics or global mutable state.
 
-In the reference library, the bitable write completion process is atomic (the table won't be readable unless it has been fully written completely). It also contains durable and non durable modes for finishing the bitable.  The durable mode completes writes and flushes (including through the on-disk cache) in a particular order to make sure the bitable is completely on storage (preserving the atomiticity guarantee), the non durable mode does the writes in order but does not perform the flushing (for use cases where a bitable is only used within the current power cycle).
+In the reference library, the bitable write completion process is atomic (the table won't be readable unless it has been written completely), this is achieved by writing a checksummed header as the last step in the process. It also contains durable and non durable modes for finishing the bitable.  The durable mode completes writes and flushes (including through the on-disk cache) in a particular order to make sure the bitable is completely on storage, the non-durable mode writes in the same order but does not perform the flushing (for use cases where a bitable is only used within the current power cycle).
 
-The implementation has been designed so that the reading and writing parts of the bitable code are not dependent on each other (although, they are dependent on some small common parts), even though they are currently built into the library together. Although, the library is small enough (it can fit in the instruction cache entirely) that you don't really need to worry about this unless you're really trying to make your code super compact.
+The implementation has been designed so that the reading and writing parts of the bitable code are not dependent on each other (although, they are dependent on some small common parts), even though they are currently built into the library together. The library is small enough (it can fit in the instruction cache entirely) that you don't really need to worry about this in general.
 
-The implementation also uses UTF-8 for all file paths (including on Windows). 
+Platform and portability wise, the implementation also uses UTF-8 for all file paths (including on Windows). The table files produced by the bitable system use platform endianness etc, so they may not be portable between platforms.
 
-Note that this is a side project for me and has been done in very limited time, so there is plenty of room for improvement, extra work and further rigor to be applied. Also note, the files produced by the bitable system use platform endianness etc, so they may not be portable between platforms.
 
+Note that this is a side project for me and has been done in very limited time, so there is plenty of room for improvement, extra work and further rigor to be applied. 
 ## Does it actually perform decently? ##
 
-All these benchmarks were performed on my Windows 8.1 64bit machine with 32GB of RAM and a Core i7 4790 and a Samsung 850 Pro 512GB SSD. All tests use 4KB pages and 8 byte key and value alignment. Note that these benchmarks are definitely not the final say on performance and I haven't had time to perform adequate bench-marking for multi-threaded reads, 
+All these benchmarks were performed on my Windows 8.1 64bit machine with 32GB of RAM, a Core i7 4790 and a Samsung 850 Pro 512GB SSD. All tests use 4KB pages and 8 byte key and value alignment. Note that these benchmarks are definitely not the final say on performance and I haven't had time to perform adequate bench-marking for multi-threaded reads.
 
 Our test dataset is using 129,672,136 24 byte keys (a latitude and longitude pair of 2 doubles, as well as a 64bit unix millisecond time stamp), matching up to an 8 byte value . It's 3.86 GiB, packed end to end.
 
