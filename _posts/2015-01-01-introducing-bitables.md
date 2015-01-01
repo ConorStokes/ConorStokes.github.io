@@ -81,8 +81,8 @@ The implementation has been designed so that the reading and writing parts of th
 
 Platform and portability wise, the implementation also uses UTF-8 for all file paths (including on Windows). The table files produced by the bitable system use platform endianness etc, so they may not be portable between platforms.
 
-
 Note that this is a side project for me and has been done in very limited time, so there is plenty of room for improvement, extra work and further rigor to be applied. 
+
 ## Does it actually perform decently? ##
 
 All these benchmarks were performed on my Windows 8.1 64bit machine with 32GB of RAM, a Core i7 4790 and a Samsung 850 Pro 512GB SSD. All tests use 4KB pages and 8 byte key and value alignment. Note that these benchmarks are definitely not the final say on performance and I haven't had time to perform adequate bench-marking for multi-threaded reads.
