@@ -29,13 +29,19 @@ tagline: Software Development Trash!
 {% endfor %}
 
 <div class="pagination">
-    {% if paginator.previous_page %}
-    <a href="/page{{ paginator.previous_page }}" class="previous">Previous</a>
-    {% else %}
-    {% endif %}
-    <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-    {% if paginator.next_page %}
-    <a href="/page{{ paginator.next_page }}" class="next">Next</a>
-    {% else %}
-    {% endif %}
+    <p>
+        {% if paginator.previous_page and paginator.previous_page != 1 %}
+        <a href="/page{{ paginator.previous_page }}" class="previous">Previous</a>
+        {% else %}
+        {% if paginator.previous_page and paginator.previous_page == 1 %}
+        <a href="/index.html" class="previous">Previous</a>
+        {% else %}
+        {% endif %}
+        {% endif %}
+        {% if paginator.next_page %}
+        <a href="/page{{ paginator.next_page }}" class="next">Next</a>
+        {% else %}
+        {% endif %}
+    </p>
 </div>
+<p><span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span></p>
