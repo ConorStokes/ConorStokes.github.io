@@ -104,7 +104,7 @@ Since [last time]({{ site.url }}/graphics/2014/09/30/better-vertex-cache-optimis
 MODEL&nbsp;&nbsp;  |  &nbsp;&nbsp;TRIANGLES&nbsp;&nbsp;  |  &nbsp;&nbsp;UNCOMPRESSED&nbsp;&nbsp;  |  &nbsp;&nbsp;COMPRESSED&nbsp;&nbsp;  |  &nbsp;&nbsp;COMPRESSION TIME&nbsp;&nbsp;  | &nbsp;&nbsp;DECOMPRESSION TIME (MIN)  | &nbsp;&nbsp;DECOMPRESSION TIME (AVG)  | &nbsp;&nbsp;DECOMPRESSION TIME (MAX)  | &nbsp;&nbsp;DECOMPRESSION TIME (STD-DEV)
 :-- | :-- | :-- | :-- | :--: | :--: | :--: | :--: | :--: |
 Bunny | &nbsp;&nbsp;69,630 | &nbsp;&nbsp;835,560 | &nbsp;&nbsp;108,908 | &nbsp;&nbsp;2.42ms | &nbsp;&nbsp;0.552ms | &nbsp;&nbsp;0.558ms | &nbsp;&nbsp;0.599ms | &nbsp;&nbsp;0.0086ms
-Armadillo | &nbsp;&nbsp;345,944 | &nbsp;&nbsp;4,151,328 | &nbsp;&nbsp;547,781 | &nbsp;&nbsp;12.2s | &nbsp;&nbsp;2.81ms | &nbsp;&nbsp;2.82s | &nbsp;&nbsp;2.86ms | &nbsp;&nbsp;0.0103ms
+Armadillo | &nbsp;&nbsp;345,944 | &nbsp;&nbsp;4,151,328 | &nbsp;&nbsp;547,781 | &nbsp;&nbsp;12.2ms | &nbsp;&nbsp;2.81ms | &nbsp;&nbsp;2.82ms | &nbsp;&nbsp;2.86ms | &nbsp;&nbsp;0.0103ms
 Dragon | &nbsp;&nbsp;871,306 | &nbsp;&nbsp;10,455,672 | &nbsp;&nbsp;1,363,265 | &nbsp;&nbsp;35.2ms | &nbsp;&nbsp;7.22ms | &nbsp;&nbsp;7.27ms | &nbsp;&nbsp;7.51ms | &nbsp;&nbsp;0.0724ms
 Buddha | &nbsp;&nbsp;1,087,474 | &nbsp;&nbsp;13,049,688 | &nbsp;&nbsp;1,703,928 | &nbsp;&nbsp;38.8ms | &nbsp;&nbsp;9.01ms | &nbsp;&nbsp;9.04ms | &nbsp;&nbsp;9.176ms | &nbsp;&nbsp;0.0304ms
   |   |   |   |   |   |   |   | 
@@ -113,8 +113,8 @@ So, our baseline is a fair bit faster than before. Throughput is currently sitti
 
 MODEL&nbsp;&nbsp;  |  &nbsp;&nbsp;TRIANGLES&nbsp;&nbsp;  |  &nbsp;&nbsp;UNCOMPRESSED&nbsp;&nbsp;  |  &nbsp;&nbsp;COMPRESSED&nbsp;&nbsp;  |  &nbsp;&nbsp;COMPRESSION TIME&nbsp;&nbsp;  | &nbsp;&nbsp;DECOMPRESSION TIME (MIN)  | &nbsp;&nbsp;DECOMPRESSION TIME (AVG)  | &nbsp;&nbsp;DECOMPRESSION TIME (MAX)  | &nbsp;&nbsp;DECOMPRESSION TIME (STD-DEV)
 :-- | :-- | :-- | :-- | :--: | :--: | :--: | :--: | :--: |
-Bunny | &nbsp;&nbsp;69,630 | &nbsp;&nbsp;835,560 | &nbsp;&nbsp;70,422 | &nbsp;&nbsp;2.52ms | &nbsp;&nbsp;0.552ms | &nbsp;&nbsp;0.827ms | &nbsp;&nbsp;0.829ms | &nbsp;&nbsp;0.0029ms
-Armadillo | &nbsp;&nbsp;345,944 | &nbsp;&nbsp;4,151,328 | &nbsp;&nbsp;354,843 | &nbsp;&nbsp;12.1s | &nbsp;&nbsp;4.15ms | &nbsp;&nbsp;4.17s | &nbsp;&nbsp;4.27ms | &nbsp;&nbsp;0.0303ms
+Bunny | &nbsp;&nbsp;69,630 | &nbsp;&nbsp;835,560 | &nbsp;&nbsp;70,422 | &nbsp;&nbsp;2.52ms | &nbsp;&nbsp;0.827ms | &nbsp;&nbsp;0.828ms | &nbsp;&nbsp;0.844ms | &nbsp;&nbsp;0.0029ms
+Armadillo | &nbsp;&nbsp;345,944 | &nbsp;&nbsp;4,151,328 | &nbsp;&nbsp;354,843 | &nbsp;&nbsp;12.1ms | &nbsp;&nbsp;4.15ms | &nbsp;&nbsp;4.17ms | &nbsp;&nbsp;4.27ms | &nbsp;&nbsp;0.0303ms
 Dragon | &nbsp;&nbsp;871,306 | &nbsp;&nbsp;10,455,672 | &nbsp;&nbsp;875,771 | &nbsp;&nbsp;31.8ms | &nbsp;&nbsp;10.6ms | &nbsp;&nbsp;10.64ms | &nbsp;&nbsp;10.82ms | &nbsp;&nbsp;0.0497ms
 Buddha | &nbsp;&nbsp;1,087,474 | &nbsp;&nbsp;13,049,688 | &nbsp;&nbsp;1,095,804 | &nbsp;&nbsp;38.7ms | &nbsp;&nbsp;13.25ms | &nbsp;&nbsp;13.28ms | &nbsp;&nbsp;13.788ms | &nbsp;&nbsp;0.0687ms
   |   |   |   |   |   |   |   | 
