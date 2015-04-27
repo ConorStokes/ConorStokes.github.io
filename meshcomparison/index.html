@@ -1,0 +1,145 @@
+---
+layout: page
+title: "Comparison of Original vs Previously Compressed Mesh"
+description: ""
+---
+{% include JB/setup %}
+
+
+<div id="renderContainer" width="800" height="600"></div>
+
+<script src="{{ site.url }}/threejs/three.js"></script>
+<script src="{{ site.url }}/threejs/OrbitControls.js"></script>
+<script src="{{ site.url }}/threejs/OBJLoader.js"></script>
+<script src="{{ site.url }}/threejs/Detector.js"></script>
+<script>
+
+
+            if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+            var container, stats;
+
+            var camera, controls, scene, renderer, bunny1, bunny2;
+
+            init();
+            render();
+
+            function animate() {
+
+                requestAnimationFrame(animate);
+                controls.update();
+                render();
+
+            }
+
+            function init() {
+
+                camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
+                camera.position.z = 7;
+
+                controls = new THREE.OrbitControls( camera );
+                controls.damping = 0.2;
+                controls.addEventListener( 'change', render );
+
+                scene = new THREE.Scene();
+
+                var loader = new THREE.OBJLoader();
+
+                loader.load(
+                    '{{ site.url }}/Meshes/bunny.obj',
+                    function( object ) {
+                        object.rotation.x = 0;
+                        object.rotation.y = 0;
+                        object.rotation.z = 0;
+                        object.position.set( -2, -1, 0 );
+                        bunny1 = object;
+                        scene.add( object );
+
+                        render();
+                    });
+
+                loader.load(
+                    '{{ site.url }}/Meshes/bunny2_opt_comp.obj',
+                    function( object ) {
+                        object.rotation.x = 0;
+                        object.rotation.y = 0;
+                        object.rotation.z = 0;
+                        object.position.set( 2, -1, 0 );
+                        bunny2 = object;
+                        scene.add( object );
+
+                        render();
+                    });
+
+                // lights
+
+                light = new THREE.DirectionalLight( 0xffffff );
+                light.position.set( 1, 1, 1 );
+                scene.add( light );
+
+                light = new THREE.DirectionalLight( 0x002288 );
+                light.position.set( -1, -1, -1 );
+                scene.add( light );
+
+                light = new THREE.AmbientLight( 0x222222 );
+                scene.add( light );
+
+                // renderer
+
+                renderer = new THREE.WebGLRenderer( { antialias: true } );
+                renderer.setPixelRatio( window.devicePixelRatio );
+                renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+
+                container = document.getElementById( 'renderContainer' );
+                container.appendChild( renderer.domElement );
+
+                window.addEventListener( 'resize', onWindowResize, false );
+
+                animate();
+
+            }
+
+            function onWindowResize() {
+
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize( window.innerWidth / 2, window.innerHeight / 2 );
+
+                render();
+
+            }
+
+            function render() {
+
+                renderer.render( scene, camera );
+
+                var currentTime = Date.now()
+
+                if (bunny1) {
+                    bunny1.rotation.y = currentTime / 900.0;
+                }
+
+                if (bunny2) {
+                    bunny2.rotation.y = currentTime / 900.0;
+                }
+
+            }
+
+</script>
+<div>
+    <p>
+        On the left is the original (unchanged from source), on the right is the mesh that has undergone compression and has been round-tripped back to wavefront OBJ.<br/>
+        <ul>
+            <li>
+                Vertex positions were reduced to 14bits per component prior to compression, for the compressed version.
+            </li>
+            <li>
+                Vertex normals were transformed to the precise octahedron representation with each of the two components using 10bits.
+            </li>
+        </ul>
+    </p>
+    <p>
+        This demo is based off example code from <a href="http://threejs.org/">threejs</a>. It has orbit and zoom mouse controls.
+    </p>
+</div>
