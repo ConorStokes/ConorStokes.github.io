@@ -6,7 +6,7 @@ category: "Geometry"
 tags: ["SDF", "Graphics", "Hilbert Curve", "Compression", "Geometry"]
 ---
 {% include JB/setup %}
-So, this is more of an "thought bubble" blog post than anything concrete yet, but I thought it might be worth some discussion, or at least putting the ideas out there because someone else might find them useful. 
+So, this is more of a "thought bubble" blog post than anything concrete yet, but I thought it might be worth some discussion, or at least putting the ideas out there because someone else might find them useful. 
 
 I've been thinking a lot lately about the potentials for combining traversals in a [Hilbert curve](https://en.wikipedia.org/wiki/Hilbert_curve) ordering with regularly sampled SDFs (signed distance field, which is a sampling of the nearest distance to the surface of an object, with a sign derived from whether the sample is inside or outside the object). Using a Hilbert curve is already a well known technique for improving spatial locality for regularly sampled grids, but there are some properties that apply to SDFs with fairly accurate euclidean distances that sit well with Hilbert curves. Note that what I'm talking about is mainly with 3D SDFs/Hilbert curves in mind, but it applies to 2D as well (as a side note for the pedant in me, if we're talking higher dimensions, SDFs aren't really a good idea).
 
