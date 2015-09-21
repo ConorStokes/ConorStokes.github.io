@@ -77,18 +77,34 @@ Next, we need to do the second round of comparisons. This time we only have 2 co
 
 Finally, we will add all the masked losers together, like a failed superhero convention:
 
-    __m128i indices = 
-	    _mm_add_epi32( 
-	        _mm_add_epi32( maskedLosers1, 
-	                       maskedLosers2 ), 
-	        maskedLosers3 );
+    __m128i indices = _mm_add_epi32( _mm_add_epi32( maskedLosers1, maskedLosers2 ), maskedLosers3 );
 
 Now if you want to, you can take 4 unsorted values (in the same order as the keys) and scatter them using these indices. Unfortunately SSE doesn't have any gather/scatter functionality, so you'll have to do that bit the old fashioned way.
 
 ## Have You Tested It?
 
-Why yes! I have enumerated all possible ordering permutations with repetition (using the values 0.0, 1.0, 2.0 and 3.0). Early performance testing implies low to mid single digit nanoseconds per sort.
+Why yes! I have enumerated all possible ordering permutations with repetition (using the values 0.0, 1.0, 2.0 and 3.0). Early performance testing implies low single digit nanoseconds per sort.
 
 ## What about NaNs?
 
 NaNs aren't possible in my current use case, so I haven't walked through all the possibilities yet.
+
+## Update, Shaving Off Two Instructions!
+
+So, a small brainwave, because the compares come out as 0xFFFFFFFF, which is -1 (if we treat them as integers), we can subtract them, instead of adding them, and lose the masking ands. We keep the and-not, because we need the complement (and it saves doing a negate/subtraction from zero). The final composite becomes:
+
+    __m128i indices = _mm_sub_epi32( _mm_sub_epi32( maskedLosers2, losers1 ), losers3 );
+
+Remove the lines calculating maskedLosers1 and maskedLosers3, here is the actual implementation all together, at 12 instructions:
+
+    __m128  left1         = _mm_shuffle_ps( input, input, _MM_SHUFFLE( 0, 2, 1, 0 ) );
+    __m128  right1        = _mm_shuffle_ps( input, input, _MM_SHUFFLE( 3, 3, 2, 1 ) );
+    __m128i tournament1   = _mm_castps_si128( _mm_cmpgt_ps( left1, right1 ) ); 
+    __m128i losers1       = _mm_xor_si128( tournament1, flip1 );
+    __m128i winners2      = _mm_shuffle_epi32( losers1, _MM_SHUFFLE( 2, 1, 0, 3 ) );
+    __m128i maskedLosers2 = _mm_andnot_si128( winners2, mask1 );
+    __m128  left2         = _mm_shuffle_ps( input, input, _MM_SHUFFLE( 1, 0, 1, 0 ) );
+    __m128  right2        = _mm_shuffle_ps( input, input, _MM_SHUFFLE( 3, 2, 3, 2 ) );
+    __m128i tournament2   = _mm_castps_si128( _mm_cmpgt_ps( left2, right2 ) );
+    __m128i losers3       = _mm_xor_si128( tournament2, flip2 );
+    __m128i indices       = _mm_sub_epi32( _mm_sub_epi32( maskedLosers2, losers1 ), losers3 );
