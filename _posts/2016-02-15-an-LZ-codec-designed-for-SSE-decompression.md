@@ -1121,7 +1121,7 @@ The last file of Silesia, an x-ray medical image, is less compressible and suits
 |                             |            |            |             |       |
 
 
-Here's enwik9 from the Large Text Compression Benchmark, mainly for completeness, as there is a quite large number of published results for this benchmark elsewhere. Curiously here, we actually beat memcpy, probably due to some OS related memory management shenanigans:
+Here's enwik9 from the Large Text Compression Benchmark, mainly for completeness, as there is a quite large number of published results for this benchmark elsewhere. Note, I used 128MiB blocksize for this test, instead of the default as used on the other tests. Curiously here, we actually beat memcpy, probably due to some OS related memory management shenanigans:
 
 | Compressor name             | &nbsp;&nbsp;Compression&nbsp;&nbsp;| &nbsp;&nbsp;Decompress.&nbsp;&nbsp;| &nbsp;&nbsp;Compr. size&nbsp;&nbsp; | &nbsp;&nbsp;Ratio&nbsp;&nbsp; |
 | ---------------             | -----------| -----------| ----------- | ----- |
