@@ -52,7 +52,7 @@ First up, enwik8; our new LZSSE2 compression implementation has given up a few b
 | lzsse8o 0.1 level 17        |    10 MB/s |  3673 MB/s |    38716643 | 38.72 |
 |                             |            |            |             |       |
 
-LZSSE8 shows that with an optimal parser that it's a better generalist on the tar'd silesia corpus than LZSSE2 (which has poor handling of hard to compress data), with both stronger compression and significantly faster decompression. Compression speed again is significantly improved:
+LZSSE8 shows that with an optimal parser it's a better generalist on the tar'd silesia corpus than LZSSE2 (which has poor handling of hard to compress data), with both stronger compression and significantly faster decompression. Compression speed again is significantly improved:
 
 | Compressor name             | &nbsp;&nbsp;Compression&nbsp;&nbsp;| &nbsp;&nbsp;Decompress.&nbsp;&nbsp;| &nbsp;&nbsp;Compr. size&nbsp;&nbsp; | &nbsp;&nbsp;Ratio&nbsp;&nbsp; |
 | ---------------             | -----------| -----------| ----------- | ----- |
