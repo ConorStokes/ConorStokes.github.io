@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Compressor Improvements and LZSSE2 vs LZSSE8"
-description: ""
-category: 
-tags: []
+description: "Evolving LZSSE"
+category: Compression
+tags: [Compression, LZSSE, Optimization]
 ---
 {% include JB/setup %}
 

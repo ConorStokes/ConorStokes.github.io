@@ -3,7 +3,7 @@ layout: post
 title: "An LZ Codec Designed for SSE Decompression"
 description: "A fun exercise in building something for a particular platform."
 category: Compression
-tags: [Compression, SSE, Optimization]
+tags: [Compression, LZSSE, SSE, Optimization]
 ---
 {% include JB/setup %}
 
