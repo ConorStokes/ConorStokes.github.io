@@ -259,7 +259,7 @@ The samba source code offers a bit of a surprise, also doing better on LZSSE8. I
 | lzsse8o 0.1 level 17        |  2.58 MB/s |  4956 MB/s |     5965309 | 27.61 |
 |                             |            |            |             |       |
 
-The less compressible SAO star catalog is less compressible and LZSSE2 does very poorly compared to LZSSE8 here:
+The SAO star catalog is less compressible and LZSSE2 does very poorly compared to LZSSE8 here:
 
 | Compressor name             | &nbsp;&nbsp;Compression&nbsp;&nbsp;| &nbsp;&nbsp;Decompress.&nbsp;&nbsp;| &nbsp;&nbsp;Compr. size&nbsp;&nbsp; | &nbsp;&nbsp;Ratio&nbsp;&nbsp; |
 | ---------------             | -----------| -----------| ----------- | ----- |
