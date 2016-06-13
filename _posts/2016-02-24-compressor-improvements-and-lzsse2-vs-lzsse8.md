@@ -7,7 +7,7 @@ tags: [Compression, LZSSE, Optimization]
 ---
 {% include JB/setup %}
 
-One of the things that I hadn't put a lot of time into with [LZSSE](conorstokes.github.io/compression/2016/02/15/an-LZ-codec-designed-for-SSE-decompression), when I shoved it out into the open last week, was the compressor side of things. The compressors were mainly there as a way to show that the codec/decompression functioned and although it was pretty young and experimental, I thought it was worth sharing and getting some feedback on.
+One of the things that I hadn't put a lot of time into with [LZSSE](http://conorstokes.github.io/compression/2016/02/15/an-LZ-codec-designed-for-SSE-decompression), when I shoved it out into the open last week, was the compressor side of things. The compressors were mainly there as a way to show that the codec/decompression functioned and although it was pretty young and experimental, I thought it was worth sharing and getting some feedback on.
 
 One of the things that became fairly apparent (and anyone who eyeballed the original benchmarks would've seen) is that the compression speed for LZSSE2's optimal parser was terrible. Thanks to some pointers from the community, particularly from Charles Bloom, the match finding has been replaced with something better (an implementation of the same algorithm used in LzFind) and compression speed improved substantially. There is a very minor cost in compression ratio though on some files, although some was gained back due to fixing a bug in the cost calculations for matches. I've also created an LZSSE8 optimal parsing variant, LZSSE4's is on the way.
 
@@ -259,7 +259,7 @@ The samba source code offers a bit of a surprise, also doing better on LZSSE8. I
 | lzsse8o 0.1 level 17        |  2.58 MB/s |  4956 MB/s |     5965309 | 27.61 |
 |                             |            |            |             |       |
 
-The less compressible SAO star catalog is less compressible and LZSSE2 does very poorly compared to LZSSE8 here:
+The SAO star catalog is less compressible and LZSSE2 does very poorly compared to LZSSE8 here:
 
 | Compressor name             | &nbsp;&nbsp;Compression&nbsp;&nbsp;| &nbsp;&nbsp;Decompress.&nbsp;&nbsp;| &nbsp;&nbsp;Compr. size&nbsp;&nbsp; | &nbsp;&nbsp;Ratio&nbsp;&nbsp; |
 | ---------------             | -----------| -----------| ----------- | ----- |
