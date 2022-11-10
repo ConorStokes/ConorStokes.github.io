@@ -3,7 +3,7 @@
 permalink: /:categories/:year/:month/:day/:title 
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
-pygments: true
+highligher: 'pygments'
 baseurl: ""
 
 # Themes are encouraged to use these universal variables 
@@ -17,6 +17,7 @@ author :
   github : ConorStokes
   twitter : xDirtyPunkx
   feedburner : MessWithYourJunk
+plugins: [jekyll-paginate]
 paginate: 5
 
 # The production_url is only used when full-domain names are needed
